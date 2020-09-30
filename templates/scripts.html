@@ -1,0 +1,18 @@
+{% load static %}
+
+<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+<script type='text/javascript' src="{% static 'handlebars/dist/handlebars.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript">
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+    // Animations initialization
+    new WOW().init();
+
+
+</script>
