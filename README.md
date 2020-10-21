@@ -2,7 +2,7 @@
 
 A WIP project where users can upload tasks or accept them. (Upwork clone)
 
-![demo](https://user-images.githubusercontent.com/40122794/94721838-0c287600-0374-11eb-8705-afdad69d8776.gif)
+![demo](https://user-images.githubusercontent.com/40122794/96768033-f51cf700-13fa-11eb-9e13-905b5679870c.gif)
 
 ### Tech stack-
 - Django for backend.

@@ -12,6 +12,12 @@ function initalize () {
             url: "getTask",
             data,
             success: (d) => {
+                height = document.scrollingElement.scrollTop - $("#task_rows").offset().top;
+                if (height > 0)
+                    $("#display_task").css("padding-top", height + $(".navbar").outerHeight() + 5 + "px");
+                else
+                $("#display_task").css("padding-top", "0px");
+
                 $("#display_task_title").text(d.title);
                 $("#display_task_text").text(d.description);
                 $("#display_task_info").text("$"+d.pay+" per hour, within "+d.days+" days.");
