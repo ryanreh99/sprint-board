@@ -2,64 +2,78 @@
 {% load static %}
 
 {% block content_create_task %}
-<div class="card">
-    <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Contact us</strong>
-    </h5>
+<div class="col-lg-6 col-md-12">
+    <div class="card">
+        <h5 class="card-header info-color white-text text-center py-4">
+            <strong>Create Task</strong>
+        </h5>
 
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
-        <!-- Alert -->
-        <div class="alert alert-danger" style="display: none;" role="alert" id="form_failed">
-            <p style="text-align: center;"></p>
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+            <!-- Alert -->
+            <div class="alert alert-danger" style="display: none;" role="alert" id="form_failed">
+                <p style="text-align: center;"></p>
+            </div>
+
+            <!-- Form -->
+            <form id="create_task" class="text-center" style="color: #757575;" action="#!">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+                <!-- Title -->
+                <div class="md-form mt-3">
+                    <input type="text" id="title" class="form-control">
+                    <label for="title">Task Title</label>
+                </div>
+
+                <!-- Pay -->
+                <p>Enter payment per hour (in USD)</p>
+                <div class="def-number-input number-input safari_only">
+                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        class="minus">-</button>
+                    <input class="pay" min="1" name="pay" value="1" type="number">
+                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        class="plus">+</button>
+                </div>
+
+                <br>
+                <!-- Days -->
+                <p>Enter Time Limit (in days)</p>
+                <div class="def-number-input number-input safari_only">
+                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        class="minus">-</button>
+                    <input class="days" min="1" name="days" value="1" type="number">
+                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        class="plus">+</button>
+                </div>
+
+                <!--Message-->
+                <div class="md-form">
+                    <textarea id="description" class="form-control md-textarea" rows="3"></textarea>
+                    <label for="description">Description</label>
+                </div>
+
+                <!--Image-->
+                <div class="file-field">
+                    <div class="btn blue-gradient btn-sm">
+                        <span><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i>Choose files</span>
+                        <input type="file" class="image_upload">
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="terms">
+                    <label class="form-check-label" for="terms">Accept Terms and Conditions.</label>
+                </div>
+
+                <!-- Send button -->
+                <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Send
+                </button>
+
+            </form>
+            <!-- Form -->
         </div>
 
-        <!-- Form -->
-        <form id="create_task" class="text-center" style="color: #757575;" action="#!">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-
-            <!-- Title -->
-            <div class="md-form mt-3">
-                <input type="text" id="title" class="form-control">
-                <label for="title">Task Title</label>
-            </div>
-
-            <!-- Pay -->
-            <p>Enter payment per hour (in USD)</p>
-            <div class="def-number-input number-input safari_only">
-                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
-                <input class="pay" min="1" name="pay" value="1" type="number">
-                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
-            </div>
-
-            <br>
-            <!-- Days -->
-            <p>Enter Time Limit (in days)</p>
-            <div class="def-number-input number-input safari_only">
-                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
-                <input class="days" min="1" name="days" value="1" type="number">
-                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
-            </div>
-
-            <!--Message-->
-            <div class="md-form">
-                <textarea id="description" class="form-control md-textarea" rows="3"></textarea>
-                <label for="description">Description</label>
-            </div>
-
-            <!-- Terms -->
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="terms">
-                <label class="form-check-label" for="terms">Accept Terms and Conditions.</label>
-            </div>
-
-            <!-- Send button -->
-            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Send
-            </button>
-
-        </form>
-        <!-- Form -->
     </div>
-
 </div>
 {% endblock %}

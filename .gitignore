@@ -2,3 +2,4 @@
 node_modules/
 staticfiles/
 **/__pycache__
+var/

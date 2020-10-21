@@ -16,6 +16,8 @@ function initalize () {
                 $("#display_task_text").text(d.description);
                 $("#display_task_info").text("$"+d.pay+" per hour, within "+d.days+" days.");
                 $("#display_task_time").text("Created at: "+d.create_date);
+                if (d.image_hash)
+                    $("#display_task_image").attr("src", "task_images/" + d.id + "/" + d.image_hash)
                 $("#display_task").show();
             },
             error: () => {
@@ -29,11 +31,14 @@ function initalize () {
         e.preventDefault();
         e.stopPropagation();
 
+        const form_data = new FormData();
+
         const title = $("#create_task #title").val();
         const pay = parseInt($("#create_task .pay").val(), 10);
         const days = parseInt($("#create_task .days").val(), 10);
         const description = $("#create_task #description").val();
         const terms = $("#create_task #terms").prop('checked');
+        const image = $("#create_task .image_upload");
 
         let error_text = "";
         if(!terms) {
@@ -52,21 +57,25 @@ function initalize () {
         }
 
         function success() {
-            console.log("yes");
             window.location.href = '../'
         };
         function error() {
             $("#form_failed p").html("Failed!! Try again.");
             $("#form_failed").show();
         };
-        const data = {title, pay, days, description};
+        const data = {title, pay, days, description, image};
+        for (const property in data) {
+            form_data.append(property, data[property]);
+          }
+
         $.ajax({
-            type: "POST",
             url: "create",
-            data,
+            type: "POST",
+            data:  form_data,
             success,
             error,
-            dataType: "json",
+            processData: false,
+            contentType: false,
         });
     });
 }

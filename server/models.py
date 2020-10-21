@@ -11,9 +11,10 @@ class Task(models.Model):
     days = models.PositiveIntegerField(default=10)
     pay = models.PositiveIntegerField(default=10)
     description = models.TextField(default="")
+    image_hash = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.id}_{self.title}"
 
 
 class AcceptedTask(models.Model):
