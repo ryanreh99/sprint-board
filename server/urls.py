@@ -14,9 +14,9 @@ urlpatterns = [
     path('getTask', get_task, name='get-task'),
 ]
 
-avatars_url = path(
+uploads_url = path(
         'task_images/<path:path>',
         serve,
         {'document_root': os.path.join(settings.LOCAL_UPLOADS_DIR)},
     )
-urlpatterns += [avatars_url]
+urlpatterns += [uploads_url]

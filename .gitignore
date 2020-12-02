@@ -3,3 +3,5 @@ node_modules/
 staticfiles/
 **/__pycache__
 var/
+aws_config.ini
+db.sqlite3
