@@ -1,11 +1,37 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User, Group
+from django.core.exceptions import ObjectDoesNotExist
+from django.forms.models import model_to_dict
+
+from rest_framework import status, viewsets, permissions
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import Task
+from .serializers import UserSerializer, GroupSerializer
 from .manager.upload import create_task_basename, upload_task_image, get_task_image_path
-import json
 
-def task_list(request):
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+def task_list(request: HttpRequest) -> HttpResponse:
     task_context = []
     for task in Task.objects.all():
         image_src = "https://mdbootstrap.com/img/Photos/Others/photo8.jpg"
@@ -24,27 +50,31 @@ def task_list(request):
     return render(request, "task_list.html", context)
 
 
-def get_task(request):
+@api_view(['GET'])
+def get_task(request: HttpRequest, pk: int) -> HttpResponse:
+    try:
+        task = Task.objects.get(pk=pk)  
+    except ObjectDoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    task.create_date = str(task.create_date)
+    task_obj = model_to_dict(task)
+    task_obj['creator'] = task.creator.username
+    return Response(task_obj, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', 'POST'])
+def create_task(request: HttpRequest) -> HttpResponse:
     if request.method == "GET":
-        data = request.GET
-        try:
-            task = Task.objects.filter(pk=int(data.get('task_id')))
-            send_data = list(task.values())[0]
-            send_data["create_date"] = str(send_data["create_date"])
-        except:
-            return HttpResponse(status=403)
-        return HttpResponse(json.dumps(send_data))
-
-
-def create_task(request):
+        context = {}
+        return render(request, "create_task.html", context)
     if request.method == "POST":
         data = request.POST
         user = request.user
         user_file = list(request.FILES.values())
+        image_hash = None
         if len(user_file) == 1:
             image_hash = create_task_basename(user_file[0].name)
-        else:
-            image_hash = None
         
         try:
             task = Task.objects.create(
@@ -62,9 +92,9 @@ def create_task(request):
                  
         except Exception as e:
             print(e)
-            return HttpResponse(status=403)
-        return HttpResponse(status=204)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_201_CREATED)
 
-    elif request.method == "GET":
-        context = {}
-        return render(request, "create_task.html", context)
+
+def redirect_to_home(request: HttpRequest) -> HttpResponse:
+    return redirect('server:task-list')

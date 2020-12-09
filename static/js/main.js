@@ -1,7 +1,11 @@
+const MIN_TWO_COLUMN_WIDTH = 992
+
 function render_display_task(task) {
-    let height = document.scrollingElement.scrollTop - $("#task_rows").offset().top;
-    height = Math.max(0, height + $(".navbar").outerHeight() + 5);
-    $("#display_task").css("padding-top", height + "px");
+    if ($(window).width() >= MIN_TWO_COLUMN_WIDTH) {
+        let height = document.scrollingElement.scrollTop - $("#task_rows").offset().top;
+        height = Math.max(0, height + $(".navbar").outerHeight() + 5);
+        $("#display_task").css("padding-top", height + "px");
+    }
 
     let src = "https://mdbootstrap.com/img/Photos/Others/photo8.jpg";
     if (task.image_hash)
@@ -11,6 +15,7 @@ function render_display_task(task) {
     $("#display_task_text").text(task.description);
     $("#display_task_info").text("$" + task.pay + " per hour, within " + task.days + " days.");
     $("#display_task_time").text("Created at: " + task.create_date);
+    $("#display_task_creator").text("By: " + task.creator);
     $("#display_task_image").attr("src", src)
 }
 
@@ -32,11 +37,9 @@ function initalize() {
         const task_id = $(e.target).closest(".task_elem").attr("data-task-id");
         if (!task_id) return;
 
-        data = { task_id };
         $.ajax({
             type: "GET",
-            url: "getTask",
-            data,
+            url: "tasks/" + task_id,
             success: (data) => {
                 render_display_task(data);
                 $("#display_task").show();
@@ -70,10 +73,10 @@ function initalize() {
         }
         $("#form_failed").hide();
 
-        function success() {
+        success = () => {
             window.location.href = '../'
         };
-        function error() {
+        error = () => {
             $("#form_failed p").html("Failed!! Try again.");
             $("#form_failed").show();
         };
