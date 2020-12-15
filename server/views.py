@@ -8,9 +8,10 @@ from rest_framework import status, viewsets, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .models import Task
-from .serializers import UserSerializer, GroupSerializer
-from .manager.upload import create_task_basename, upload_task_image, get_task_image_path
+from server.models import Task
+from server.forms import TaskCreationForm
+from server.serializers import UserSerializer, GroupSerializer
+from server.manager.upload import create_task_basename, upload_task_image, get_task_image_path
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -69,6 +70,10 @@ def create_task(request: HttpRequest) -> HttpResponse:
         context = {}
         return render(request, "create_task.html", context)
     if request.method == "POST":
+        form = TaskCreationForm(request.POST)
+        if not form.is_valid():
+            return Response(data = form.errors, status=status.HTTP_400_BAD_REQUEST)
+
         data = request.POST
         user = request.user
         user_file = list(request.FILES.values())

@@ -6,11 +6,11 @@ from django.utils.timezone import now as timezone_now
 class Task(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     create_date = models.DateTimeField(db_index=True, default=timezone_now)
-    title = models.CharField(max_length=100, db_index=True)
+    title = models.CharField(max_length=100, db_index=True, blank=False)
     accepted = models.BooleanField(default=False)
     days = models.PositiveIntegerField(default=10)
     pay = models.PositiveIntegerField(default=10)
-    description = models.TextField(default="")
+    description = models.TextField(default="", blank=False)
     image_hash = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):

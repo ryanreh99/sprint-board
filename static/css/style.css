@@ -5,3 +5,17 @@
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+.btn-border {
+  color: #2bbbad;
+  background-color: transparent;
+  border: 2px solid #2bbbad;
+}
+
+.card-info {
+  background-color: #2bbbad;
+}
+
+.teal-text {
+  color: #2bbbad;
+}

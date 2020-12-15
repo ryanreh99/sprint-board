@@ -4,7 +4,7 @@
 {% block content_create_task %}
 <div class="col-lg-6 col-md-12">
     <div class="card">
-        <h5 class="card-header info-color white-text text-center py-4">
+        <h5 class="card-header card-info white-text text-center py-4">
             <strong>Create Task</strong>
         </h5>
 
@@ -15,8 +15,7 @@
                 <p style="text-align: center;"></p>
             </div>
 
-            <!-- Form -->
-            <form id="create_task" class="text-center" style="color: #757575;" action="#!">
+            <form id="create_task" class="text-center">
                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
                 <!-- Title -->
@@ -28,22 +27,14 @@
                 <!-- Pay -->
                 <p>Enter payment per hour (in USD)</p>
                 <div class="def-number-input number-input safari_only">
-                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                        class="minus">-</button>
-                    <input class="pay" min="1" name="pay" value="1" type="number">
-                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                        class="plus">+</button>
+                    <input class="pay form-control" min="1" name="pay" value="10" type="number">
                 </div>
 
                 <br>
                 <!-- Days -->
                 <p>Enter Time Limit (in days)</p>
                 <div class="def-number-input number-input safari_only">
-                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                        class="minus">-</button>
-                    <input class="days" min="1" name="days" value="1" type="number">
-                    <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                        class="plus">+</button>
+                    <input class="days form-control" min="1" name="days" value="10" type="number">
                 </div>
 
                 <!--Message-->
@@ -54,9 +45,10 @@
 
                 <!--Image-->
                 <div class="file-field">
-                    <div class="btn blue-gradient btn-sm">
-                        <span><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i>Choose files</span>
-                        <input type="file" class="image_upload">
+                    <div class="btn btn-outline-default waves-effect">
+                        <span><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i>Choose file</span>
+                        <label for="task-image-upload">Custom Upload</label>
+                        <input id="task-image-upload" type="file" class="image_upload" style="display: none;">
                     </div>
                 </div>
 
@@ -67,11 +59,9 @@
                 </div>
 
                 <!-- Send button -->
-                <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Send
+                <button class="btn btn-border btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Send
                 </button>
-
             </form>
-            <!-- Form -->
         </div>
 
     </div>

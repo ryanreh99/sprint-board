@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.static import serve
 from django.conf import settings
 
-from .views import task_list, create_task, get_task, redirect_to_home
+from server.views import task_list, create_task, get_task, redirect_to_home
 import os
 
 app_name = 'server'

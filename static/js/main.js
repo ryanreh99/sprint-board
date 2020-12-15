@@ -65,20 +65,24 @@ function initalize() {
         const image = $("#create_task .image_upload");
         const data = { title, pay, days, description, image };
 
+        const error_block = $("#form_failed");
+        const error_region = error_block.find("p");
         const error_text = get_error_text(data, terms);
         if (error_text) {
-            $("#form_failed p").html(error_text);
-            $("#form_failed").show();
+            error_region.html(error_text);
+            error_block.show();
             return;
         }
-        $("#form_failed").hide();
+        error_block.hide();
 
         success = () => {
             window.location.href = '../'
         };
-        error = () => {
-            $("#form_failed p").html("Failed!! Try again.");
-            $("#form_failed").show();
+        error = (data) => {
+            console.log(data.responseJSON);
+            error_region.html("Failed!! Try again.");
+            error_region.append($("<p></p>").text(data.responseText));
+            error_block.show();
         };
         
         for (const property in data) {
