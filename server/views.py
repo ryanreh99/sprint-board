@@ -63,37 +63,41 @@ def get_task(request: HttpRequest, pk: int) -> HttpResponse:
     return Response(task_obj, status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def create_task(request: HttpRequest) -> HttpResponse:
-    form = TaskCreationForm(request.POST)
-    if not form.is_valid():
-        return Response(data = form.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == "GET":
+        context = {}
+        return render(request, "create_task.html", context)
+    if request.method == "POST":
+        form = TaskCreationForm(request.POST)
+        if not form.is_valid():
+            return Response(data = form.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    data = request.POST
-    user = request.user
-    user_file = list(request.FILES.values())
-    image_hash = None
-    if len(user_file) == 1:
-        image_hash = create_task_basename(user_file[0].name)
-    
-    try:
-        task = Task.objects.create(
-            creator=user,
-            title=data.get('title', ''),
-            days=int(data.get('days', '')),
-            pay=int(data.get('pay', '')),
-            description=data.get('description', ''),
-        )
+        data = request.POST
+        user = request.user
+        user_file = list(request.FILES.values())
+        image_hash = None
         if len(user_file) == 1:
-            upload_task_image(task.id, image_hash, user_file[0])
-            t = Task.objects.get(pk=task.id)
-            t.image_hash = image_hash
-            t.save()
-                
-    except Exception as e:
-        print(e)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-    return Response(status=status.HTTP_201_CREATED)
+            image_hash = create_task_basename(user_file[0].name)
+        
+        try:
+            task = Task.objects.create(
+                creator=user,
+                title=data.get('title', ''),
+                days=int(data.get('days', '')),
+                pay=int(data.get('pay', '')),
+                description=data.get('description', ''),
+            )
+            if len(user_file) == 1:
+                upload_task_image(task.id, image_hash, user_file[0])
+                t = Task.objects.get(pk=task.id)
+                t.image_hash = image_hash
+                t.save()
+                    
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_201_CREATED)
 
 
 def redirect_to_home(request: HttpRequest) -> HttpResponse:
