@@ -4,24 +4,26 @@ function render_display_task(task) {
     if ($(window).width() >= MIN_TWO_COLUMN_WIDTH) {
         let height = document.scrollingElement.scrollTop - $("#task_rows").offset().top;
         height = Math.max(0, height + $(".navbar").outerHeight() + 5);
-        $("#display_task").css("padding-top", height + "px");
+        $("#display_task").css("padding-top", `${height}px`);
     }
 
     let src = "https://mdbootstrap.com/img/Photos/Others/photo8.jpg";
     if (task.image_hash)
-        src = "task_images/" + task.id + "/" + task.image_hash;
+        src = `task_images/${task.id}/${task.image_hash}`;
 
     $("#display_task_title").text(task.title);
     $("#display_task_text").text(task.description);
-    $("#display_task_info").text("$" + task.pay + " per hour, within " + task.days + " days.");
-    $("#display_task_time").text("Created at: " + task.create_date);
-    $("#display_task_creator").text("By: " + task.creator);
-    $("#display_task_image").attr("src", src)
+    $("#display_task_info").text(`$${task.pay} per hour, within ${task.days} days.`);
+    $("#display_task_time").text(`Created at: ${task.create_date}`);
+    $("#display_task_creator").text(`By: ${task.creator}`);
+    $("#display_task_image").attr("src", src);
+
+    $("#display_task").show();
 }
 
-function get_error_text(data, terms) {
-    if (!terms) {
-        return "Please accept terms and conditions.";
+function get_error_text(data) {
+    if (!data.TNC) {
+        return "Please accept Terms and Conditions.";
     }
     if (!data.title || data.title.length === 0) {
         return "Title cannot be empty!";
@@ -40,10 +42,7 @@ function initalize() {
         $.ajax({
             type: "GET",
             url: "tasks/" + task_id,
-            success: (data) => {
-                render_display_task(data);
-                $("#display_task").show();
-            },
+            success: render_display_task,
             error: () => {
                 $("#display_task").hide();
             },
@@ -55,19 +54,17 @@ function initalize() {
         e.preventDefault();
         e.stopPropagation();
 
-        const form_data = new FormData();
-
-        const title = $("#create_task #title").val();
-        const pay = parseInt($("#create_task .pay").val(), 10);
-        const days = parseInt($("#create_task .days").val(), 10);
-        const description = $("#create_task #description").val();
-        const terms = $("#create_task #terms").prop('checked');
+        const title = $("#create_task .title").val();
+        const pay = Number.parseInt($("#create_task .pay").val(), 10);
+        const days = Number.parseInt($("#create_task .days").val(), 10);
+        const description = $("#create_task .description").val();
         const image = $("#create_task .image_upload");
-        const data = { title, pay, days, description, image };
+        const TNC = $("#create_task #terms").prop('checked');
+        const data = { title, pay, days, description, image, TNC };
 
         const error_block = $("#form_failed");
         const error_region = error_block.find("p");
-        const error_text = get_error_text(data, terms);
+        const error_text = get_error_text(data);
         if (error_text) {
             error_region.html(error_text);
             error_block.show();
@@ -79,19 +76,17 @@ function initalize() {
             window.location.href = '../'
         };
         error = (data) => {
-            console.log(data.responseJSON);
             error_region.html("Failed!! Try again.");
             error_region.append($("<p></p>").text(data.responseText));
             error_block.show();
         };
-        
-        for (const property in data) {
-            form_data.append(property, data[property]);
-        }
+
+        const form_data = new FormData();
+        Object.keys(data).forEach(key => form_data.append(key, data[key]));
 
         $.ajax({
-            url: "create",
             type: "POST",
+            url: "create",
             data: form_data,
             success,
             error,

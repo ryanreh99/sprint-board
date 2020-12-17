@@ -22,8 +22,7 @@
                     <p class="dark-grey-text">
                         <strong>{{ task.title }}</strong>
                     </p>
-                    $ {{ task.pay }} / hour within
-                    {{ task.days }} days.
+                    $ {{ task.pay }} / hour within {{ task.days }} days.
                 </div>
             </div>
             <hr>
@@ -33,10 +32,9 @@
 
         <div class="col-lg-6 col-md-12" id="display_task" style="display: none;">
             <div class="card mb-3">
-                <img id="display_task_image" class="card-img-top"
-                    src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" alt="">
+                <img id="display_task_image" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 id="display_task_title" class="card-title">Card title</h5>
+                    <h5 id="display_task_title" class="card-title"></h5>
                     <p id="display_task_text" class="card-text"></p>
                     <p class="card-text">
                         <small id="display_task_info" class="text-muted"></small>
