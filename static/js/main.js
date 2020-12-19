@@ -1,3 +1,5 @@
+const _ = require("lodash");
+
 const MIN_TWO_COLUMN_WIDTH = 992
 
 function render_display_task(task) {
@@ -82,7 +84,9 @@ function initalize() {
         };
 
         const form_data = new FormData();
-        Object.keys(data).forEach(key => form_data.append(key, data[key]));
+        _.forOwn(data, (value, key) => {
+            form_data.append(key, data[key]);
+        });
 
         $.ajax({
             type: "POST",

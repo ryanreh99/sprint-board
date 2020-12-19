@@ -2,9 +2,12 @@
   "name": "sprint-board",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch",
+    "start-server": "./node_modules/webpack/bin/webpack.js serve"
   },
   "repository": {
     "type": "git",
@@ -17,8 +20,15 @@
   },
   "homepage": "https://github.com/ryanreh99/sprint-board#readme",
   "dependencies": {
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "lodash": "^4.17.20",
     "popper.js": "^1.14.3"
+  },
+  "devDependencies": {
+    "webpack": "^5.11.0",
+    "webpack-bundle-tracker": "0.4.3",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
   }
 }

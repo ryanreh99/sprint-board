@@ -6,6 +6,7 @@ A WIP project where users can upload tasks or accept them. (Upwork clone)
 
 ### Tech stack-
 - Django for backend.
+- Webpack a module bundler.
 - all-auth for authentication
 - Bootstrap, MD Bootstrap for static assets.
 - Javascript + JQuery for frontend.
@@ -14,6 +15,7 @@ A WIP project where users can upload tasks or accept them. (Upwork clone)
 - Activate virtual environment.
 - `npm install` and `pip install Django` and `pip install django-allauth`
 - `python manage.py collectstatic`
-- `python manage.py runserver`
+- `npm run-script start-server`
+- `python manage.py runserver` (In a seperate terminal)
 
 

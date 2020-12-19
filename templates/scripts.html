@@ -5,14 +5,13 @@
 <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
 
-<script type='text/javascript' src="{% static 'handlebars/dist/handlebars.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'main' 'js' %}
+
 <script type="text/javascript">
     $.ajaxSetup({
       headers: { "X-CSRFToken": '{{csrf_token}}' }
     });
     // Animations initialization
     new WOW().init();
-
-
 </script>

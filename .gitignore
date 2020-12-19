@@ -5,3 +5,4 @@ staticfiles/
 var/
 aws_config.ini
 db.sqlite3
+dist/
