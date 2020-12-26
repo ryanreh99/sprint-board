@@ -1,0 +1,30 @@
+$white-background: ghostwhite;
+$teal: #2bbbad;
+
+
+html, body {
+  min-width: 300px;
+  background-color: $white-background;
+}
+
+.card-comments img {
+  width: 4rem; }
+
+  .jumbotron {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.btn-border {
+  color: $teal;
+  background-color: transparent;
+  border: 2px solid $teal;
+}
+
+.card-info {
+  background-color: $teal;
+}
+
+.teal-text {
+  color: $teal;
+}
