@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
 $blue-background: url(https://mdbootstrap.com/img/Photos/Others/background3.jpg);
 $white-background: ghostwhite;
 $blue: #0099ff;
 $theme: $blue;
 
-
-html, body {
+html,
+body {
   min-width: 300px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   background-color: $white-background;
 }
 
@@ -40,5 +40,4 @@ html, body {
       border-style: solid;
     }
   }
-  
 }

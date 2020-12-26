@@ -1,21 +1,23 @@
 const _ = require("lodash");
 
-const MIN_TWO_COLUMN_WIDTH = 992
+const MIN_TWO_COLUMN_WIDTH = 992;
 
 function render_display_task(task) {
     if ($(window).width() >= MIN_TWO_COLUMN_WIDTH) {
-        let height = document.scrollingElement.scrollTop - $("#task_rows").offset().top;
+        let height =
+            document.scrollingElement.scrollTop - $("#task_rows").offset().top;
         height = Math.max(0, height + $(".navbar").outerHeight() + 5);
         $("#display_task").css("padding-top", `${height}px`);
     }
 
     let src = "https://mdbootstrap.com/img/Photos/Others/photo8.jpg";
-    if (task.image_hash)
-        src = `task_images/${task.id}/${task.image_hash}`;
+    if (task.image_hash) src = `task_images/${task.id}/${task.image_hash}`;
 
     $("#display_task_title").text(task.title);
     $("#display_task_text").text(task.description);
-    $("#display_task_info").text(`$${task.pay} per hour, within ${task.days} days.`);
+    $("#display_task_info").text(
+        `$${task.pay} per hour, within ${task.days} days.`
+    );
     $("#display_task_time").text(`Created at: ${task.create_date}`);
     $("#display_task_creator").text(`By: ${task.creator}`);
     $("#display_task_image").attr("src", src);
@@ -41,7 +43,7 @@ function display_error_text(error_text) {
     error_region.append($("<p></p>").text(error_text));
     error_block.show();
     setTimeout(() => {
-        error_block.fadeOut( "slow");
+        error_block.fadeOut("slow");
     }, 25000);
 }
 
@@ -73,7 +75,7 @@ function initalize() {
         const days = Number.parseInt($("#create_task .days").val(), 10);
         const description = $("#create_task .description").val();
         const image = $("#create_task .image_upload");
-        const TNC = $("#create_task #terms").prop('checked');
+        const TNC = $("#create_task #terms").prop("checked");
         const data = { title, pay, days, description, image, TNC };
 
         const error_text = get_error_text(data);
@@ -83,7 +85,7 @@ function initalize() {
         }
 
         const success = () => {
-            window.location.href = '../'
+            window.location.href = "../";
         };
         const error = (data) => {
             display_error_text(data.responseText);

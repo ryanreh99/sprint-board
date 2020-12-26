@@ -1,5 +1,5 @@
 import "./setup.js";
 
-import { Tooltip, Toast, Popover } from 'bootstrap';
+import { Tooltip, Toast, Popover } from "bootstrap";
 
-import "./main.js"
+import "./main.js";

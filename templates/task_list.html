@@ -1,51 +1,44 @@
-{% extends "base.html" %}
-
-{% block content_jumbotron %}
-{% include "jumbotron.html" %}
-{% endblock %}
-{% block content_task_list %}
+{% extends "base.html" %} {% block content_jumbotron %} {% include
+"jumbotron.html" %} {% endblock %} {% block content_task_list %}
 <section class="wow fadeIn">
-    <h2 class="h1 text-center my-5 font-weight-bold">Task Feed</h2>
-    <div id="task_rows" class="row text-left">
-
-        <div class="col-lg-6 col-md-12">
-            {% for task in tasks %}
-            <div class="row task_elem" data-task-id="{{ task.id }}">
-                <div class="col-md-3">
-                    <div class="view overlay rounded z-depth-1">
-                        <img src="{{ task.image_src }}" class="img-fluid" alt="">
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <p class="dark-grey-text">
-                        <strong>{{ task.title }}</strong>
-                    </p>
-                    $ {{ task.pay }} / hour within {{ task.days }} days.
-                </div>
-            </div>
-            <hr>
-            {% endfor %}
+  <h2 class="h1 text-center my-5 font-weight-bold">Task Feed</h2>
+  <div id="task_rows" class="row text-left">
+    <div class="col-lg-6 col-md-12">
+      {% for task in tasks %}
+      <div class="row task_elem" data-task-id="{{ task.id }}">
+        <div class="col-md-3">
+          <div class="view overlay rounded z-depth-1">
+            <img src="{{ task.image_src }}" class="img-fluid" alt="" />
+          </div>
         </div>
 
-
-        <div class="col-lg-6 col-md-12" id="display_task" style="display: none;">
-            <div class="card mb-3">
-                <img id="display_task_image" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 id="display_task_title" class="card-title"></h5>
-                    <p id="display_task_text" class="card-text"></p>
-                    <p class="card-text">
-                        <small id="display_task_info" class="text-muted"></small>
-                        <br>
-                        <small id="display_task_time" class="text-muted"></small>
-                        <br>
-                        <small id="display_task_creator" class="text-muted"></small>
-                    </p>
-                </div>
-            </div>
+        <div class="col-md-9">
+          <p class="dark-grey-text">
+            <strong>{{ task.title }}</strong>
+          </p>
+          $ {{ task.pay }} / hour within {{ task.days }} days.
         </div>
-
+      </div>
+      <hr />
+      {% endfor %}
     </div>
+
+    <div class="col-lg-6 col-md-12" id="display_task" style="display: none">
+      <div class="card mb-3">
+        <img id="display_task_image" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 id="display_task_title" class="card-title"></h5>
+          <p id="display_task_text" class="card-text"></p>
+          <p class="card-text">
+            <small id="display_task_info" class="text-muted"></small>
+            <br />
+            <small id="display_task_time" class="text-muted"></small>
+            <br />
+            <small id="display_task_creator" class="text-muted"></small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}

@@ -1,0 +1,5 @@
+templates/account/
+webpack-stats.json
+package-lock.json
+package.json
+*.md

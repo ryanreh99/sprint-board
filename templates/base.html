@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width"
+      />
+      <title>Sprint Board</title>
+      <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      />
 
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-    <title>Sprint Board</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+      {% load render_bundle from webpack_loader %} {% render_bundle 'style'
+      'css' %}
+    </head>
 
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'style' 'css' %}
-</head>
+    <body>
+      {% include "navbar.html" %}
 
-<body>
-    {% include "navbar.html" %}
+      <div id="csrf_token" style="display: none">{{csrf_token}}</div>
 
-    <div id="csrf_token" style="display: none;">{{csrf_token}}</div>
-
-    <main class="mt-5 pt-5" style="padding-top: 1rem !important; margin-top: 1rem !important">
+      <main
+        class="mt-5 pt-5"
+        style="padding-top: 1rem !important; margin-top: 1rem !important"
+      >
         <div class="container">
-            {% block content %}{% endblock %}
-            {% block content_jumbotron %}{% endblock %}
-            {% block content_task_list %}{% endblock %}
-            {% block content_create_task %}{% endblock %}
+          {% block content %}{% endblock %} {% block content_jumbotron %}{%
+          endblock %} {% block content_task_list %}{% endblock %} {% block
+          content_create_task %}{% endblock %}
         </div>
-    </main>
+      </main>
 
-    {% include "scripts.html" %}
-
-</body>
+      {% include "scripts.html" %}
+    </body>
+  </html>
 </html>

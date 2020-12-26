@@ -1,67 +1,102 @@
-{% extends "base.html" %}
-
-{% block content_create_task %}
+{% extends "base.html" %} {% block content_create_task %}
 <div class="col-lg-6 col-md-12">
-    <div class="card">
-        <h5 class="card-header card-info white-text text-center py-4">
-            <strong>Create Task</strong>
-        </h5>
+  <div class="card">
+    <h5 class="card-header card-info white-text text-center py-4">
+      <strong>Create Task</strong>
+    </h5>
 
-        <!--Card content-->
-        <div class="card-body px-lg-5 pt-0">
-            <div class="alert alert-danger" style="display: none;" role="alert" id="form_failed">
-                <p style="text-align: center;"></p>
-            </div>
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+      <div
+        class="alert alert-danger"
+        style="display: none"
+        role="alert"
+        id="form_failed"
+      >
+        <p style="text-align: center"></p>
+      </div>
 
-            <form id="create_task" class="text-center">
-                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+      <form id="create_task" class="text-center">
+        <input
+          type="hidden"
+          name="csrfmiddlewaretoken"
+          value="{{ csrf_token }}"
+        />
 
-                <!-- Title -->
-                <div class="md-form mt-3">
-                    <input type="text" class="title form-control" placeholder="Task Title">
-                </div>
-                <br>
+        <!-- Title -->
+        <div class="md-form mt-3">
+          <input
+            type="text"
+            class="title form-control"
+            placeholder="Task Title"
+          />
+        </div>
+        <br />
 
-                <!-- Pay -->
-                <p>Enter payment per hour (in USD)</p>
-                <div class="def-number-input number-input safari_only">
-                    <input class="pay form-control" min="1" name="pay" value="10" type="number">
-                </div>
-                <br>
+        <!-- Pay -->
+        <p>Enter payment per hour (in USD)</p>
+        <div class="def-number-input number-input safari_only">
+          <input
+            class="pay form-control"
+            min="1"
+            name="pay"
+            value="10"
+            type="number"
+          />
+        </div>
+        <br />
 
-                <!-- Days -->
-                <p>Enter Time Limit (in days)</p>
-                <div class="def-number-input number-input safari_only">
-                    <input class="days form-control" min="1" name="days" value="10" type="number">
-                </div>
-                <br>
+        <!-- Days -->
+        <p>Enter Time Limit (in days)</p>
+        <div class="def-number-input number-input safari_only">
+          <input
+            class="days form-control"
+            min="1"
+            name="days"
+            value="10"
+            type="number"
+          />
+        </div>
+        <br />
 
-                <!--Description-->
-                <div class="md-form">
-                    <textarea class="description form-control md-textarea" placeholder="Description"></textarea>
-                </div>
-                <br>
+        <!--Description-->
+        <div class="md-form">
+          <textarea
+            class="description form-control md-textarea"
+            placeholder="Description"
+          ></textarea>
+        </div>
+        <br />
 
-                <!--Image-->
-                <div class="file-field">
-                    <div class="btn form-btn">
-                        <span><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i>Choose file</span>
-                        <label for="task-image-upload">Custom Upload</label>
-                        <input id="task-image-upload" type="file" class="image_upload" style="display: none;">
-                    </div>
-                </div>
-
-                <!-- Terms -->
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="terms">
-                    <label class="form-check-label" for="terms">Accept Terms and Conditions.</label>
-                </div>
-
-                <!-- Send button -->
-                <button class="btn form-btn" type="submit">Send</button>
-            </form>
+        <!--Image-->
+        <div class="file-field">
+          <div class="btn form-btn">
+            <span
+              ><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i
+              >Choose file</span
+            >
+            <label for="task-image-upload">Custom Upload</label>
+            <input
+              id="task-image-upload"
+              type="file"
+              class="image_upload"
+              style="display: none"
+            />
+          </div>
         </div>
 
+        <!-- Terms -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="terms" />
+          <label class="form-check-label" for="terms"
+            >Accept Terms and Conditions.</label
+          >
+        </div>
+
+        <!-- Send button -->
+        <button class="btn form-btn" type="submit">Send</button>
+      </form>
     </div>
+  </div>
 </div>
 {% endblock %}
