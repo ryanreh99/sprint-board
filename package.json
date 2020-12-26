@@ -22,8 +22,7 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
-    "lodash": "^4.17.20",
-    "webpack-fix-style-only-entries": "^0.6.0"
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "css-loader": "^5.0.1",
@@ -33,6 +32,7 @@
     "webpack": "^5.11.0",
     "webpack-bundle-tracker": "0.4.3",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-remove-empty-scripts": "^0.7.0"
   }
 }

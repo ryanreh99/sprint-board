@@ -2,7 +2,7 @@ const path = require('path');
 
 const BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 module.exports = {
   context: __dirname,
@@ -33,7 +33,7 @@ module.exports = {
   plugins: [
     new BundleTracker({filename: './webpack-stats.json'}),
     new MiniCssExtractPlugin(),
-    new FixStyleOnlyEntriesPlugin(),
+    new RemoveEmptyScriptsPlugin(),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
