@@ -2,7 +2,7 @@
     "tabWidth": 4,
     "overrides": [
         {
-            "files": ["*.scss", "*.html"],
+            "files": ["*.scss", "*.html", "webpack.config.js"],
             "options": {
                 "tabWidth": 2
             }
