@@ -96,7 +96,7 @@ def create_task(request: HttpRequest) -> HttpResponse:
                     
         except Exception as e:
             print(e)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(data = str(e), status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_201_CREATED)
 
 

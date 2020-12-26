@@ -1,13 +1,2 @@
-{% load static %}
-
-<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-
 {% load render_bundle from webpack_loader %}
 {% render_bundle 'main' 'js' %}
-
-<script type="text/javascript">
-    $.ajaxSetup({
-      headers: { "X-CSRFToken": '{{csrf_token}}' }
-    });
-</script>

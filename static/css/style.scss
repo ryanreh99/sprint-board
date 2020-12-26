@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+$blue-background: url(https://mdbootstrap.com/img/Photos/Others/background3.jpg);
 $white-background: ghostwhite;
 $blue: #0099ff;
 $theme: $blue;
@@ -15,17 +16,15 @@ html, body {
   width: 4rem;
 }
 
-.card-info {
-  background-color: $theme;
-}
-
 .theme-text {
   color: $theme;
 }
 
-.jumbotron {
-  padding-top: 0px;
-  padding-bottom: 0px;
+.card-info,
+.jumbotron,
+.form-btn {
+  padding: 8px;
+  background-image: $blue-background;
 }
 
 .btn-border {
@@ -33,7 +32,6 @@ html, body {
   background-color: transparent;
   border: 2px solid $theme;
 }
-
 
 .navbar-light {
   background-color: whitesmoke;

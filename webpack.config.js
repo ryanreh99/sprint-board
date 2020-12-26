@@ -1,20 +1,31 @@
 const path = require('path');
 
+const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
+const source_map_options = {
+  options: {
+    sourceMap: true
+  }
+};
+
 module.exports = {
   context: __dirname,
   entry: {
-    main: './static/js/main.js',
-    style: './static/css/style.scss',
+    main: './static/js/app.js',
+    style: [
+      './static/css/style.scss',
+      './static/css/bootstrap.scss'
+    ],
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: 'http://localhost:9000/',
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -22,10 +33,16 @@ module.exports = {
         use: [
           // Extracts a CSS file per JS string
           MiniCssExtractPlugin.loader,
-          // Translates CSS into CommonJS
-          "css-loader",
+          // Translates CSS into CommonJS          
+          {
+            loader: "css-loader",
+            ...source_map_options,
+          },
           // Compiles Sass to CSS
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            ...source_map_options,
+        }
         ],
       },
     ],
@@ -34,6 +51,10 @@ module.exports = {
     new BundleTracker({filename: './webpack-stats.json'}),
     new MiniCssExtractPlugin(),
     new RemoveEmptyScriptsPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

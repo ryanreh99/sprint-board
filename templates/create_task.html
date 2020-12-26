@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content_create_task %}
 <div class="col-lg-6 col-md-12">
@@ -10,7 +9,6 @@
 
         <!--Card content-->
         <div class="card-body px-lg-5 pt-0">
-            <!-- Alert -->
             <div class="alert alert-danger" style="display: none;" role="alert" id="form_failed">
                 <p style="text-align: center;"></p>
             </div>
@@ -46,7 +44,7 @@
 
                 <!--Image-->
                 <div class="file-field">
-                    <div class="btn btn-outline-default waves-effect">
+                    <div class="btn form-btn">
                         <span><i class="fas fa-cloud-upload-alt mr-2" aria-hidden="true"></i>Choose file</span>
                         <label for="task-image-upload">Custom Upload</label>
                         <input id="task-image-upload" type="file" class="image_upload" style="display: none;">
@@ -60,8 +58,7 @@
                 </div>
 
                 <!-- Send button -->
-                <button class="btn btn-border btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Send
-                </button>
+                <button class="btn form-btn" type="submit">Send</button>
             </form>
         </div>
 

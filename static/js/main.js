@@ -33,6 +33,18 @@ function get_error_text(data) {
     return undefined;
 }
 
+function display_error_text(error_text) {
+    const error_block = $("#form_failed");
+    const error_region = error_block.find("p");
+
+    error_region.html("Failed!! Try again.");
+    error_region.append($("<p></p>").text(error_text));
+    error_block.show();
+    setTimeout(() => {
+        error_block.fadeOut( "slow");
+    }, 25000);
+}
+
 function initalize() {
     $("body").on("click", ".row", (e) => {
         e.preventDefault();
@@ -64,23 +76,17 @@ function initalize() {
         const TNC = $("#create_task #terms").prop('checked');
         const data = { title, pay, days, description, image, TNC };
 
-        const error_block = $("#form_failed");
-        const error_region = error_block.find("p");
         const error_text = get_error_text(data);
         if (error_text) {
-            error_region.html(error_text);
-            error_block.show();
+            display_error_text(error_text);
             return;
         }
-        error_block.hide();
 
-        success = () => {
+        const success = () => {
             window.location.href = '../'
         };
-        error = (data) => {
-            error_region.html("Failed!! Try again.");
-            error_region.append($("<p></p>").text(data.responseText));
-            error_block.show();
+        const error = (data) => {
+            display_error_text(data.responseText);
         };
 
         const form_data = new FormData();

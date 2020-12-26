@@ -1,5 +1,3 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,25 +7,26 @@
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
     <title>Sprint Board</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
     {% load render_bundle from webpack_loader %}
     {% render_bundle 'style' 'css' %}
 </head>
 
-{% include "navbar.html" %}
-
 <body>
-<main class="mt-5 pt-5" style="padding-top: 1rem !important; margin-top: 1rem !important">
-    <div class="container">
-        {% block content %}{% endblock %}
-        {% block content_jumbotron %}{% endblock %}
-        {% block content_task_list %}{% endblock %}
-        {% block content_create_task %}{% endblock %}
-    </div>
-</main>
+    {% include "navbar.html" %}
 
-{% include "scripts.html" %}
+    <div id="csrf_token" style="display: none;">{{csrf_token}}</div>
+
+    <main class="mt-5 pt-5" style="padding-top: 1rem !important; margin-top: 1rem !important">
+        <div class="container">
+            {% block content %}{% endblock %}
+            {% block content_jumbotron %}{% endblock %}
+            {% block content_task_list %}{% endblock %}
+            {% block content_create_task %}{% endblock %}
+        </div>
+    </main>
+
+    {% include "scripts.html" %}
 
 </body>
 </html>
