@@ -13,6 +13,7 @@ const source_map_options = {
 
 module.exports = {
   context: __dirname,
+  mode: "development",
   entry: {
     main: "./static/js/app.js",
     style: ["./static/css/bootstrap.scss", "./static/css/style.scss"],
@@ -22,7 +23,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "http://localhost:9000/",
   },
-  devtool: "source-map",
+  devtool: "eval-cheap-module-source-map",
   module: {
     rules: [
       {
@@ -57,5 +58,6 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
+    hot: true,
   },
 };
