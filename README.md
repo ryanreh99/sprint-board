@@ -8,7 +8,7 @@ A WIP project where users can upload tasks or accept them.
 - Django for backend.
 - Webpack a module bundler.
 - all-auth for authentication
-- Bootstrap, MD Bootstrap for static assets.
+- Bootstrap for static assets.
 - Javascript + JQuery for frontend.
 
 ### Setup-

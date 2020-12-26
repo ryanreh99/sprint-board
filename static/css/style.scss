@@ -1,30 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
 $white-background: ghostwhite;
-$teal: #2bbbad;
+$blue: #0099ff;
+$theme: $blue;
 
 
 html, body {
   min-width: 300px;
+  font-family: 'Ubuntu', sans-serif;
   background-color: $white-background;
 }
 
 .card-comments img {
-  width: 4rem; }
-
-  .jumbotron {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-.btn-border {
-  color: $teal;
-  background-color: transparent;
-  border: 2px solid $teal;
+  width: 4rem;
 }
 
 .card-info {
-  background-color: $teal;
+  background-color: $theme;
 }
 
-.teal-text {
-  color: $teal;
+.theme-text {
+  color: $theme;
+}
+
+.jumbotron {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.btn-border {
+  color: $theme;
+  background-color: transparent;
+  border: 2px solid $theme;
+}
+
+
+.navbar-light {
+  background-color: whitesmoke;
+  a {
+    .btn-outline-white {
+      border-style: solid;
+    }
+  }
+  
 }

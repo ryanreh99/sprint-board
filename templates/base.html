@@ -10,10 +10,9 @@
     <title>Sprint Board</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
 
     {% load render_bundle from webpack_loader %}
-    {% render_bundle 'main' 'css' %}
+    {% render_bundle 'style' 'css' %}
 </head>
 
 {% include "navbar.html" %}

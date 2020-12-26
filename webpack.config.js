@@ -2,13 +2,14 @@ const path = require('path');
 
 const BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
   context: __dirname,
-  entry: [
-    './static/js/main.js',
-    './static/css/style.scss',
-  ],
+  entry: {
+    main: './static/js/main.js',
+    style: './static/css/style.scss',
+  },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
@@ -32,6 +33,7 @@ module.exports = {
   plugins: [
     new BundleTracker({filename: './webpack-stats.json'}),
     new MiniCssExtractPlugin(),
+    new FixStyleOnlyEntriesPlugin(),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
