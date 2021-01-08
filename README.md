@@ -14,6 +14,8 @@ A WIP project where users can upload tasks or accept them.
 
 ### Setup-
 
+-   Install Python3.6+
+-   [Download](https://nodejs.org/en/) and [install](https://github.com/nodejs/help/wiki/Installation#how-to-install-nodejs-via-binary-archive-on-linux) Node
 -   [`Activate the virtual environment.`](https://docs.python.org/3/tutorial/venv.html)
 -   `pip install -r requirements.txt`
 -   `npm install`

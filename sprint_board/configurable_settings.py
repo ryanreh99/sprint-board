@@ -1,4 +1,4 @@
-import os
+from os.path import dirname, realpath, join
 
-ROOT_DIR = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
-LOCAL_UPLOADS_DIR = os.path.join(ROOT_DIR, 'var/uploads')
+ROOT_DIR = dirname(dirname(realpath(__file__)))
+LOCAL_UPLOADS_DIR = join(ROOT_DIR, 'var/uploads')
