@@ -11,8 +11,8 @@ from rest_framework.response import Response
 from server.models import Task
 from server.forms import TaskCreationForm
 from server.serializers import UserSerializer, GroupSerializer
-from server.manager.upload import create_task_basename, upload_task_image, get_task_image_path
-
+from server.manager.upload import create_task_basename, upload_task_image
+from server.manager.data import get_all_tasks
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -34,20 +34,15 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def task_list(request: HttpRequest) -> HttpResponse:
-    task_context = []
-    for task in Task.objects.all():
-        image_src = "https://mdbootstrap.com/img/Photos/Others/photo8.jpg"
-        if task.image_hash:
-            image_src = "task_images/" + get_task_image_path(task.id, task.image_hash)
-        task_context.append({
-            "id": task.id,
-            "title": task.title,
-            "pay": task.pay,
-            "days": task.days,
-            "image_src": image_src
-        })
+    task_context = get_all_tasks()
     context = {'tasks': task_context}
     return render(request, "task_list.html", context)
+
+@api_view(['GET'])
+def fetch_all_tasks(request: HttpRequest) -> HttpResponse:
+    task_context = get_all_tasks()
+    context = {'tasks': task_context}
+    return Response(context, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])

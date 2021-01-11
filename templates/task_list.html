@@ -7,25 +7,7 @@
 <section class="wow fadeIn">
   <h2 class="h1 text-center my-5 font-weight-bold">Task Feed</h2>
   <div id="task_rows" class="row text-left">
-    <div class="col-lg-6 col-md-12">
-      {% for task in tasks %}
-      <div class="row task_elem" data-task-id="{{ task.id }}">
-        <div class="col-md-3">
-          <div class="view overlay rounded z-depth-1">
-            <img src="{{ task.image_src }}" class="img-fluid thumbnail-images" alt="" />
-          </div>
-        </div>
-
-        <div class="col-md-9">
-          <p class="dark-grey-text">
-            <strong>{{ task.title }}</strong>
-          </p>
-          $ {{ task.pay }} / hour within {{ task.days }} days.
-        </div>
-      </div>
-      <hr />
-      {% endfor %}
-    </div>
+    <div id="left-feed" class="col-lg-6 col-md-12"></div>
 
     <div class="col-lg-6 col-md-12" id="display_task" style="display: none">
       <div class="card mb-3">

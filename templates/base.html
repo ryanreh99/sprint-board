@@ -8,6 +8,7 @@
         content="minimum-scale=1, initial-scale=1, width=device-width"
       />
       <title>Sprint Board</title>
+      <link rel="shortcut icon" type="image/x-icon" href="static/public/favicon.ico"/>
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -29,6 +30,7 @@
         <div class="container">
           {% block content %} {% endblock %}
           {% block content_jumbotron %} {% endblock %}
+          <div id="root"></div>
           {% block content_task_list %} {% endblock %}
           {% block content_create_task %} {% endblock %}
         </div>

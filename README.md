@@ -10,7 +10,7 @@ A WIP project where users can upload tasks or accept them.
 -   Webpack as a module bundler.
 -   all-auth for authentication
 -   Bootstrap for static assets.
--   Javascript + JQuery for frontend.
+-   React + JQuery for frontend.
 
 ### Setup-
 

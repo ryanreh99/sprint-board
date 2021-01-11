@@ -1,6 +1,7 @@
 const path = require("path");
 
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleTracker = require("webpack-bundle-tracker");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
@@ -15,7 +16,7 @@ module.exports = {
   context: __dirname,
   mode: "development",
   entry: {
-    main: "./static/js/app.js",
+    main: "./static/js/client.js",
     style: ["./static/css/bootstrap.scss", "./static/css/style.scss"],
   },
   output: {
@@ -43,12 +44,21 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader",
+        options: { presets: ["@babel/env"] },
+      },
     ],
   },
   plugins: [
     new BundleTracker({ filename: "./webpack-stats.json" }),
     new MiniCssExtractPlugin(),
     new RemoveEmptyScriptsPlugin(),
+    new HtmlWebpackPlugin({
+      favicon: "static/public/favicon.ico",
+    }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
@@ -56,6 +66,9 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
     compress: true,
     port: 9000,
     hot: true,

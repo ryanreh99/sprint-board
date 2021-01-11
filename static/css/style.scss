@@ -27,6 +27,25 @@ body {
   background-image: $blue-background;
 }
 
+#create_task {
+  .form-btn {
+    width: 100%;
+  }
+
+  .upload-label {
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .upload-btn {
+    cursor: default !important; // bootstrap's :not pseudo-class
+  }
+
+  #task-image-upload {
+    display: none;
+  }
+}
+
 .navbar-light {
   background-color: whitesmoke;
   a {

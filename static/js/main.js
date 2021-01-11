@@ -74,7 +74,7 @@ function initalize() {
         const pay = Number.parseInt($("#create_task .pay").val(), 10);
         const days = Number.parseInt($("#create_task .days").val(), 10);
         const description = $("#create_task .description").val();
-        const image = $("#create_task .image_upload").prop('files')[0];
+        const image = $("#create_task .image_upload").prop("files")[0];
         const TNC = $("#create_task #terms").prop("checked");
         const data = { title, pay, days, description, image, TNC };
 
