@@ -36,7 +36,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 def task_list(request: HttpRequest) -> HttpResponse:
     task_context = get_all_tasks()
     context = {'tasks': task_context}
-    return render(request, "task_list.html", context)
+    return render(request, "base.html", context)
 
 @api_view(['GET'])
 def fetch_all_tasks(request: HttpRequest) -> HttpResponse:
